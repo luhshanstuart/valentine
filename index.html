@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Baby Michelle 🥹❤️</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ff4d6d, #c9184a);
+    font-family: 'Segoe UI', Arial, sans-serif;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+
+  .lock, .card {
+    background: rgba(0,0,0,0.35);
+    padding: 35px;
+    border-radius: 25px;
+    max-width: 520px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  }
+
+  input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    margin-top: 15px;
+    width: 80%;
+  }
+
+  button {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background: #ff758f;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .hidden { display: none; }
+
+  h1 { font-size: 28px; margin-bottom: 10px; }
+  h2 { font-weight: normal; margin-bottom: 20px; }
+
+  #text {
+    font-size: 18px;
+    line-height: 1.6;
+    min-height: 140px;
+  }
+
+  .footer {
+    margin-top: 25px;
+    font-size: 15px;
+    opacity: 0.85;
+  }
+
+  .heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+    opacity: 0.8;
+  }
+
+  @keyframes float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-110vh); }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div class="lock" id="lock">
+  <h1>🔒 Private</h1>
+  <p>Only for my baby 💕</p>
+  <input type="password" id="pass" placeholder="Enter password">
+  <br>
+  <button onclick="unlock()">Unlock</button>
+</div>
+
+<!-- LOVE CARD -->
+<div class="card hidden" id="card">
+  <h1>Happy Valentine’s ❤️</h1>
+  <h2>To my baby Michelle 🥹</h2>
+  <div id="text"></div>
+  <div class="footer">— Yours, always 💘</div>
+</div>
+
+<!-- BACKGROUND MUSIC (OPTIONAL) -->
+<audio id="music" loop>
+  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Chad_Crouch/Arps/Chad_Crouch_-_Shipping_Lanes.mp3">
+</audio>
+
+<script>
+  const message = `I may not have money right now, but I could never let today pass without reminding you how much you mean to me.
+
+Your love, your patience, and the way you stay mean everything to me.
+This is real, and I’m grateful for you more than words can explain.`;
+
+  let i = 0;
+
+  function typeText() {
+    if (i < message.length) {
+      document.getElementById("text").innerHTML += message.charAt(i);
+      i++;
+      setTimeout(typeText, 40);
+    }
+  }
+
+  function unlock() {
+    if (document.getElementById("pass").value === "onlymybaby") {
+      document.getElementById("lock").classList.add("hidden");
+      document.getElementById("card").classList.remove("hidden");
+      typeText();
+      document.getElementById("music").play();
+      hearts();
+    } else {
+      alert("Wrong password 😅");
+    }
+  }
+
+  function hearts() {
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.innerHTML = "❤️";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 300);
+  }
+</script>
+
+</body>
+</html>
